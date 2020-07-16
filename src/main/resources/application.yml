@@ -1,0 +1,47 @@
+
+server:
+  port: 4040
+  error:
+    whitelabel:
+      enabled: false
+  
+eureka:
+  client:
+    serviceURL:
+      defaultZone: http://localhost:8761
+    healthcheck:
+      enabled: true
+      
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          filter:
+            CommonsRequestLoggingFilter: DEBUG
+            
+spring:
+  servlet:
+    multipart:
+      max-file-size: 64MB
+      max-request-size: 64MB
+      enabled: true
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: content-service
+
+management:
+  endpoints:
+    metrics:
+      sensitive: false
+    web:
+      exposure:
+        include: info,health,prometheus
+        
+management.metrics.tags.application: ${spring.application.name} 
+      
+      
+ 
+    
